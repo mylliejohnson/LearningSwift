@@ -150,3 +150,4 @@ for i in stride(from: 10, to: 2, by: -2){
 }
 
 a4.forEach{ print ($0)}
+
