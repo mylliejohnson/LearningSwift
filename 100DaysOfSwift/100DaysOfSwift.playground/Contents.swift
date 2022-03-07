@@ -296,3 +296,91 @@ while true {
         break
     }
 }
+
+
+
+
+// ----- DAY 5 3/07 FUNCTIONS ----- //
+
+func printHelp (){
+    let message = """
+    Welcome to my app!
+        
+    Run this app inside a directory of images and my app will resize them all into thumbnails
+    """
+    
+    print(message)
+}
+
+printHelp()
+
+func square(number: Int){
+    print(number * number)
+}
+
+square(number: 11)
+
+func square1(number: Int) -> Int{
+    return number * number
+}
+
+let result = square1(number: 12)
+print(result)
+// If you need to return multiple values, this is a perfect example of when to use tuples.
+
+func sayHi(to name: String) {
+    print("Hello, \(name)!")
+}
+
+sayHi(to: "Myllie")
+
+func greet(_ person: String) {
+    print("Hello, \(name)!")
+}
+
+greet("Myllie")
+
+func greeting(_ person: String, nicely: Bool = true){
+    if nicely == true {
+        print("hello, \(person)")
+    } else {
+        print ("oh no, its \(person) again...")
+    }
+}
+
+greeting("Myllie")
+greeting("Myllie", nicely: false)
+
+func squareNums (numbers: Int...) {
+    for number in numbers {
+        print("\(number) squared  is \(number * number) ")
+    }
+}
+
+squareNums(numbers: 1, 2, 3, 4, 5)
+
+enum PasswordError: Error {
+    case obvious
+}
+
+func checkPassword(_ password: String) throws -> Bool {
+    if password == "password" {
+        throw PasswordError.obvious
+    }
+    return true
+}
+
+do {
+    try checkPassword("password")
+    print("that password is good!")
+} catch {
+    print("you can't use that password")
+}
+// do starts section of code that might throw an error, try is used before functions that might throw an error, catch handles errors gracefully
+
+func doubleInPlace(num: inout Int) { // inout variables can be changed inside functions and changes reflect in the original value outside the function but it's better to return a new value
+    number *= 2
+}
+
+var myNum = 5
+doubleInPlace(num: &myNum)
