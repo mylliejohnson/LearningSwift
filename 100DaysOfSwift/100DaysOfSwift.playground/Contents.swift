@@ -206,3 +206,93 @@ case 50..<85: // ..< does not include 50, starts at 51
 default:
     print("You did great!")
 }
+
+
+
+
+// ----- DAY 4 03/06 LOOPS ----- //
+
+let count = 1...10
+
+for num in count {
+    print("Number is \(num)")
+}
+
+let albums = ["Red", "1989", "Reputation"]
+
+for album in albums {
+    print("\(album) is on Apple Music")
+}
+
+
+print("Players gonna ")
+for _ in 1...5{
+    print("play")
+}
+
+var number = 1
+
+while number <= 10{
+    print(number)
+    number += 1
+}
+
+print("Ready or not, here I come!")
+
+repeat {
+    print(number)
+    number += 1
+} while number <= 20
+            
+//while false {
+//    print("this is false") // false is always false so the print function will never run, "will never be executed"
+//}
+repeat {
+    print("This is false")
+} while false
+
+
+var countdown = 10
+
+while countdown >= 0 {
+    print(countdown)
+    
+    if countdown == 4 {
+        print("I'm bored. Let's go now!")
+        break
+    }
+    countdown -= 1
+}
+
+print ("Blast off!!")
+
+outerLoop: for i in 1...10 {
+    for j in 1...10  {
+        let product = i * j
+        print("\(i) * \(j) = \(product)")
+        
+        if product == 50 {
+            print("It's a bullseye!")
+            break outerLoop // exits the multiple loops at the same time
+        }
+    }
+}
+
+for i in 1...20 {
+    if i % 2 == 1 {
+        continue
+    }
+    
+    print (i)
+}
+
+var counter = 0
+
+while true {
+    print (" ")
+    counter += 1
+    
+    if counter == 273 {
+        break
+    }
+}
