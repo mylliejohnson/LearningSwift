@@ -389,7 +389,7 @@ doubleInPlace(num: &myNum)
 
 
 
-// ----- DAY 6 3/08 CLOSURES ----- //
+// ----- DAY 6 & 7 3/08 CLOSURES pt 1 & 2 ----- //
 
 // function that is assigned a variable and can pass into other functions
 
@@ -410,7 +410,7 @@ let driving3 = { (place:String) -> String in
 }
 
 let message = driving3("Key West")
-print(message + "      --------- ")
+print(message)
 
 func travel(action: () -> Void){
     print("I'm getting ready to go")
@@ -423,6 +423,8 @@ travel(action: driving)
 travel {
     print("I'm driving in my car")
 }
+
+// day 7, done accidentally with day 6
 
 
 func travel2(action: (String) -> Void) {
@@ -498,3 +500,77 @@ func travel6() -> (String) -> Void {
   5. Swift automatically provides shorthand parameter names like $0 and $1, but not everyone uses them.
   6. If you use external values inside your closures, they will be captured so the closure can refer to them later.
   */
+
+
+
+
+
+// ----- DAY 8 03/09 STRUCTS, PROPERTIES AND METHODS ----- //
+
+struct Sport {
+    var name: String
+    var isOlympicSport: Bool
+    
+    var olympicStatus: String {
+        isOlympicSport ? "\(name) is an Olympic sport" : "\(name) is not an Olympic sport."
+    }
+}
+
+var tennis = Sport(name: "Tennis", isOlympicSport: true)
+tennis.name = "Table tennis"
+
+let chessBoxing = Sport(name: "Chessboxing", isOlympicSport: false)
+print(chessBoxing.olympicStatus)
+
+struct Progress {
+    var task: String
+    var amount: Int {
+        didSet{
+            print("\(task) is \(amount)% complete")
+        }
+    }
+}
+
+var progress = Progress(task: "Loading data", amount: 0)
+progress.amount = 20
+progress.amount = 40
+progress.amount = 60
+progress.amount = 80
+progress.amount = 100
+
+struct City{
+    var population: Int
+    
+    func collectTaxes() -> Int {
+        return population * 1000
+    }
+}
+
+let miami = City(population: 100_000)
+miami.collectTaxes()
+
+struct Person {
+    var name: String
+    
+    mutating func makeAnonymous(){
+        name = "Anonymous"
+    }
+}
+
+var person = Person(name: "Myllie")
+person.makeAnonymous()
+
+print(person)
+
+let string = "Do or do not, there is no try."
+print(string.count)
+print(string.hasPrefix("Do"))
+print(string.uppercased())
+print(string.sorted())
+
+var toys = ["Woody"]
+print(toys.count)
+toys.append("Buzz")
+toys.firstIndex(of: "Buzz")
+print(toys.sorted())
+toys.remove(at: 0)
