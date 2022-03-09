@@ -490,7 +490,7 @@ func travel6() -> (String) -> Void {
         counter += 1
     }
 }
- /* summary
+ /* closures summary
   1. You can assign closures to variables, then call them later on.
   2. Closures can accept parameters and return values, like regular functions.
   3. You can pass closures into functions as parameters, and those closures can have parameters of their own and a return value.
