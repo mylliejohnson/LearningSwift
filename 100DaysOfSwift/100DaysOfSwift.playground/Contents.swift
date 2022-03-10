@@ -574,3 +574,96 @@ toys.append("Buzz")
 toys.firstIndex(of: "Buzz")
 print(toys.sorted())
 toys.remove(at: 0)
+
+
+
+
+// ----- DAY 9 03/10 STRUCTS PT 2 ----- //
+
+struct User {
+    var username: String
+    
+    init(){ // initializer
+        username = "Anonymous"
+        print("Creating a new user!")
+    }
+}
+
+var user = User()
+user.username = "mylliej"
+
+struct Person1{
+    var name: String
+    
+    init(name: String){
+        print("\(name) was born!")
+        self.name = name
+        // self helps you distinguish between the property and the parameter, self is the propertty and name is the parameter
+        // self is useful when initializers have the same names as your property
+    }
+}
+
+// lazy properties
+
+struct FamilyTree {
+    init(){
+        print("creating family tree")
+    }
+}
+
+struct Person2 {
+    var name: String
+    lazy var familyTree = FamilyTree() // by adding lazy, Swift will only create the FamilyTree struct when it’s first accessed
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
+var mylls = Person2(name: "Mylls")
+
+
+// static properties and methods
+
+struct Student {
+    static var classSize = 0
+    var name: String
+    
+    init(name: String){
+        self.name = name
+        Student.classSize += 1
+    }
+}
+
+let amaris = Student(name: "Amaris")
+let dawne = Student(name: "Dawne")
+print(Student.classSize)
+
+
+// access control
+
+struct Human {
+    private var id: String // private allows only methods inside the struct to read id property, myleika.id won't work
+    
+    init(id: String){
+        self.id = id
+    }
+    
+    func identity() -> String {
+        return "My social security is \(id)"
+    }
+}
+
+let myleika = Human(id: "12345")
+print(myleika)
+
+/* summary
+ 1 You can create your own types using structures, which can have their own properties and methods.
+ 2 You can use stored properties or use computed properties to calculate values on the fly.
+ 3 If you want to change a property inside a method, you must mark it as mutating.
+ 4 Initializers are special methods that create structs. You get a memberwise initializer by default, but if you create your own you must give all properties a value.
+ 5 Use the self constant to refer to the current instance of a struct inside a method.
+ 6 The lazy keyword tells Swift to create properties only when they are first used.
+ 7 You can share properties and methods across all instances of a struct using the static keyword.
+ 8 Access control lets you restrict what code can use properties and methods.
+ */
