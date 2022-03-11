@@ -493,12 +493,12 @@ func travel6() -> (String) -> Void {
     }
 }
  /* closures summary
-  1. You can assign closures to variables, then call them later on.
-  2. Closures can accept parameters and return values, like regular functions.
-  3. You can pass closures into functions as parameters, and those closures can have parameters of their own and a return value.
-  4. If the last parameter to your function is a closure, you can use trailing closure syntax.
-  5. Swift automatically provides shorthand parameter names like $0 and $1, but not everyone uses them.
-  6. If you use external values inside your closures, they will be captured so the closure can refer to them later.
+  1 You can assign closures to variables, then call them later on.
+  2 Closures can accept parameters and return values, like regular functions.
+  3 You can pass closures into functions as parameters, and those closures can have parameters of their own and a return value.
+  4 If the last parameter to your function is a closure, you can use trailing closure syntax.
+  5 Swift automatically provides shorthand parameter names like $0 and $1, but not everyone uses them.
+  6 If you use external values inside your closures, they will be captured so the closure can refer to them later.
   */
 
 
@@ -667,3 +667,90 @@ print(myleika)
  7 You can share properties and methods across all instances of a struct using the static keyword.
  8 Access control lets you restrict what code can use properties and methods.
  */
+
+
+
+
+// ----- DAY 10 03/11 CLASSES & INHERITANCE ----- //
+
+// final class cannot be overwritten
+class Dog {
+    var name: String
+    var breed: String
+    
+    func makeNoise(){
+        print("Woof!")
+    }
+    
+    init(name: String, breed: String){
+        self.name = name
+        self.breed = breed
+    }
+}
+
+let poppy = Dog(name: "Poppy", breed: "Poodle")
+
+class Husky: Dog {
+    override func makeNoise() {
+        print("Bark!")
+    }
+    
+    init(name: String){
+        super.init(name: name, breed: "Husky")
+    }
+}
+
+let puppy = Husky(name: "Puppy")
+puppy.makeNoise()
+
+// copying objects
+
+class Singer{
+    var name = "Lady Gaga"
+}
+
+var singer = Singer()
+print(singer.name)
+
+var singerCopy = singer
+singerCopy.name = "Billie Eillish"
+print(singer.name)
+
+class Guest {
+    var name = "Myllie Johnson"
+    
+    init(){
+        print("\(name) is alive!")
+    }
+    
+    func greeting(){
+        print("Hello, I'm \(name)")
+    }
+    
+    deinit{
+        print("\(name) has logged out")
+    }
+}
+
+for _ in 1...3 {
+    let guest = Guest()
+    guest.greeting()
+}
+
+class Cat {
+    var name = "Zenny"
+}
+
+let zenny = Cat()
+zenny.name = "Neptune"
+print(zenny.name)
+
+/* summary
+1 Classes and structs are similar, in that they can both let you create your own types with properties and methods.
+2 One class can inherit from another, and it gains all the properties and methods of the parent class. It’s common to talk about class hierarchies – one class based on another, which itself is based on another.
+3 You can mark a class with the final keyword, which stops other classes from inheriting from it.
+4 Method overriding lets a child class replace a method in its parent class with a new implementation.
+5 When two variables point at the same class instance, they both point at the same piece of memory – changing one changes the other.
+6 Classes can have a deinitializer, which is code that gets run when an instance of the class is destroyed.
+7 Classes don’t enforce constants as strongly as structs – if a property is declared as a variable, it can be changed regardless of how the class instance was created.
+*/
