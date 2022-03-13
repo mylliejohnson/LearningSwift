@@ -754,3 +754,91 @@ print(zenny.name)
 6 Classes can have a deinitializer, which is code that gets run when an instance of the class is destroyed.
 7 Classes don’t enforce constants as strongly as structs – if a property is declared as a variable, it can be changed regardless of how the class instance was created.
 */
+
+
+
+
+
+// ----- DAY 11 (SKIPPED) 03/13 PROTOCOLS ----- //
+
+protocol Identifiable {
+    var id: String { get set } // get- reads, set- writes
+    func identify()
+}
+
+struct newUser: Identifiable {
+    var id: String
+}
+
+func displayID(thing: Identifiable){
+    print("My ID is \(thing.id)")
+}
+
+extension Identifiable {
+    func identify() {
+        print("My ID is \(id).")
+    }
+}
+
+let myllixn = newUser(id: "myllixn")
+myllixn.identify()
+
+// protocol inheritance
+
+// requires conforming types to implement function()
+protocol Payable {
+    func calculateWages() -> Int
+}
+
+protocol NeedsTraining {
+    func study()
+}
+
+protocol HasVacation {
+    func takeVacation(days: Int)
+}
+
+protocol Employee: Payable, NeedsTraining, HasVacation {}
+
+// extensions
+
+extension Int {
+    func squared() -> Int {
+        return self * self
+    }
+}
+
+let numbero = 8
+numbero.squared()
+
+
+
+extension Int {
+    var isEven: Bool {
+        return self % 2 == 0
+    }
+}
+
+let pythons = ["Eric", "Graham", "John", "Michael", "Terry", "Terry"]
+let group = Set(["John", "Paul", "George", "Ringo"])
+
+extension Collection {
+    func summarize() {
+        print("There are \(count) of us:")
+
+        for name in self {
+            print(name)
+        }
+    }
+}
+
+pythons.summarize()
+group.summarize()
+
+/* summary
+ 1 Protocols describe what methods and properties a conforming type must have, but don’t provide the implementations of those methods.
+ 2 You can build protocols on top of other protocols, similar to classes.
+ 3 Extensions let you add methods and computed properties to specific types such as Int.
+ 4 Protocol extensions let you add methods and computed properties to protocols.
+ 5 Protocol-oriented programming is the practice of designing your app architecture as a series of protocols, then using protocol extensions to provide default method implementations.
+ */
